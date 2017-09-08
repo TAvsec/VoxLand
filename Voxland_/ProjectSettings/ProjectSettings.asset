@@ -594,7 +594,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: eac5ffe8-b37f-4b5c-a6e3-450bb47a5c92
   projectName: Voxland_
-  organizationId: timotej-avsec-as-publisher
+  organizationId: timotej-avsec
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
