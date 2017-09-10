@@ -66,6 +66,10 @@ public class NetworkScript : MonoBehaviour {
 		if(password == passwordC){
 			WWW www = new WWW("https://voxland.000webhostapp.com/register.php",form);
 			Debug.Log("Account created");
+			PlayerPrefs.SetString("PlayerName",username_f.text);
+			register.SetTrigger("registerTrigger");
+			StartScreen.SetActive(false);
+			MainMenu.SetActive(true);
 		}
 		else{
 			triggerAlert("Passwords must match",Color.red);
@@ -119,13 +123,13 @@ public class NetworkScript : MonoBehaviour {
 
 	void startLoadingIcon(){
 		loadingIcon.transform.eulerAngles = new Vector2(0,0);
-		loadingIcon.gameObject.active = true;
+		loadingIcon.gameObject.SetActive(true);
 		wwwIsRunning = true;
 		
 	}
 
 	void stopLoadingIcon(){
-		loadingIcon.gameObject.active = false;
+		loadingIcon.gameObject.SetActive(false);
 	}
 
 	public void triggerAlert(string alertText, Color alertColor){

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StartScreen_UI : MonoBehaviour {
 
@@ -40,6 +41,10 @@ public class StartScreen_UI : MonoBehaviour {
 		for(int i=0;i<registerInputFields.Length;i++){
 			registerInputFields[i].text = "";
 		}
+	}
+
+	public void StartButton(string levelName){
+		SceneManager.LoadScene(levelName);
 	}
 	
 }

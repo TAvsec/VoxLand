@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
 	public Text userNameTxt;
 	
 	void OnEnable () {
+		Debug.Log(PlayerPrefs.GetString("PlayerName"));
 		userNameTxt.text = "Welcome, " + PlayerPrefs.GetString("PlayerName");	
 	}
 	
