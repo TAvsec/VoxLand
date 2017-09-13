@@ -13,15 +13,25 @@
 		die("Connection failed");
 	}
 
-	$sql = "INSERT INTO Player_Account (Username,Email,Password,Nickname)
-			VALUES ('".$userName."','".$email."','".$password."','".$userName."')";
+	$sql = "SELECT Username 
+			FROM Player_Account 
+			WHERE Username = '$userName' ";
+
+	
 	$result = mysqli_query($conn,$sql);
 
-	if(!$result){
-		echo "There was error registering your account";
-	}else{
-		echo "Account have been created";
+	
+	if(mysqli_num_rows($result)==0)
+		{
+			$sql = "INSERT INTO Player_Account (Username,Email,Password,Nickname)
+					VALUES ('".$userName."','".$email."','".$password."','".$userName."')";
+			$result = mysqli_query($conn,$sql);
+			echo "Account have been created";
+		}
+	else{
+		echo("Account with that username already exist");
 	}
+		
 	
 
 
