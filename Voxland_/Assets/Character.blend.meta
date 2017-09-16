@@ -57,9 +57,12 @@ ModelImporter:
     7400010: WalkWithGun
     7400012: WalkShooting
     7400014: IdleShoot
+<<<<<<< HEAD
     7400016: WalkRight
 =======
 >>>>>>> parent of 0833ba1... Added animations and shooting
+=======
+>>>>>>> parent of 0d104b2... č
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -75,6 +78,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
+<<<<<<< HEAD
     animationImportWarnings: "\nClip 'Run' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
 <<<<<<< HEAD
@@ -108,9 +112,12 @@ ModelImporter:
 >>>>>>> parent of 0833ba1... Added animations and shooting
       has scale animation that will be discarded.\n\t'Foot_R' has scale animation
       that will be discarded.\n"
+=======
+    animationImportWarnings: 
+>>>>>>> parent of 0d104b2... č
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -343,6 +350,7 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+<<<<<<< HEAD
     - serializedVersion: 16
       name: WalkRight
       takeName: WalkRight
@@ -373,6 +381,8 @@ ModelImporter:
       additiveReferencePoseFrame: 0
 =======
 >>>>>>> parent of 0833ba1... Added animations and shooting
+=======
+>>>>>>> parent of 0d104b2... č
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -403,6 +413,7 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
+<<<<<<< HEAD
     human:
     - boneName: Hip
       humanName: Hips
@@ -724,6 +735,10 @@ ModelImporter:
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+=======
+    human: []
+    skeleton: []
+>>>>>>> parent of 0d104b2... č
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -734,10 +749,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 3
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

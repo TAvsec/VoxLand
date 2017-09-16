@@ -30,14 +30,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 		// input
-
-		float targetRotation =  cameraT.eulerAngles.y;
-		transform.eulerAngles = Vector3.up * targetRotation;
-
-		
-		Debug.Log("C " + cameraT.eulerAngles.y); //-------------------
-		Debug.Log("T " + transform.eulerAngles); //-------------------
-
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 		Vector2 inputDir = input.normalized;
 		bool running = Input.GetKey (KeyCode.LeftShift);
@@ -50,33 +42,24 @@ public class PlayerController : MonoBehaviour {
 		// animator
 		float animationSpeedPercent = ((running) ? currentSpeed / runSpeed : currentSpeed / walkSpeed * .5f);
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-		animator.SetFloat("direction", Input.GetAxisRaw ("Horizontal"));
 
 	}
 
 	void Move(Vector2 inputDir, bool running) {
-		
-		//float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraT.eulerAngles.y;
-		//float targetRotation =  cameraT.eulerAngles.y;
-		//transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, GetModifiedSmoothTime(turnSmoothTime));
-		
-
-		float targetSpeed = ((running) ? runSpeed : walkSpeed) ;
+		if (inputDir != Vector2.zero) {
+			float targetRotation = Mathf.Atan2 (inputDir.x, inputDir.y) * Mathf.Rad2Deg + cameraT.eulerAngles.y;
+			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, GetModifiedSmoothTime(turnSmoothTime));
+		}
+			
+		float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
 		currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, GetModifiedSmoothTime(speedSmoothTime));
 
-		//GRAVITACIJA
 		velocityY += Time.deltaTime * gravity;
+		Vector3 velocity = transform.forward * currentSpeed + Vector3.up * velocityY;
 
-		//SMER PREMIKANJA
-		Vector3 velocity = transform.right * inputDir.x * targetSpeed + transform.forward * inputDir.y * targetSpeed+ Vector3.up * velocityY;
-
-		//Debug.Log(currentSpeed);
-
-		//PREMIKANJE
-		controller.Move (velocity * Time.deltaTime );
+		controller.Move (velocity * Time.deltaTime);
 		currentSpeed = new Vector2 (controller.velocity.x, controller.velocity.z).magnitude;
 
-		//PREVERJANJE STIKA S TLEMI
 		if (controller.isGrounded) {
 			velocityY = 0;
 		}

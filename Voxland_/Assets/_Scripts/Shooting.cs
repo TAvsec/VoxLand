@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour {
 			anim.SetBool("shoot",false);
 		}
 
-		//Debug.Log(Quaternion.Angle(Quaternion.Euler(transform.eulerAngles),Quaternion.Euler(Vector2.up * cam.transform.eulerAngles.y)));
+		Debug.Log(Quaternion.Angle(Quaternion.Euler(transform.eulerAngles),Quaternion.Euler(Vector2.up * cam.transform.eulerAngles.y)));
 	}
 
 	public void shoot(float delayBetweenShots){
