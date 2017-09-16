@@ -37,7 +37,7 @@ public class NetworkScript : MonoBehaviour {
 	public GameObject alert;
 
 	void Start(){
-		DontDestroyOnLoad(transform.gameObject);
+		Debug.Log(PlayerPrefs.GetString("PlayerName"));
 	}
 
 	void Update(){
@@ -57,55 +57,31 @@ public class NetworkScript : MonoBehaviour {
 		
 	}
 
-	public IEnumerator Register(){
+	public void Register(){
 		WWWForm form = new WWWForm();
 		form.AddField("username",username);
 		form.AddField("email",email);
 		form.AddField("password",password);
 
-		if(username.Length>=8 && email.Length>=10 && password.Length>=8){
-			if(password == passwordC){
-				WWW www = new WWW("https://voxland.000webhostapp.com/register.php",form);
-
-				startLoadingIcon();
-				yield return www;
-				stopLoadingIcon();
-				Debug.Log(www.text);
-				switch (www.text){
-					case "Account have been created":				 	Debug.Log("Account created");
-																		PlayerPrefs.SetString("PlayerName",username_f.text);
-																		register.SetTrigger("registerTrigger");
-																		StartScreen.SetActive(false);
-																		MainMenu.SetActive(true);break;
-					case "Account with that username already exist": 	triggerAlert("Username already exist",Color.red);
-																		break;
-					default: 											triggerAlert("Error creating account",Color.red);
-																		break;
-				}
-
-				
-			}
-			else{
-				triggerAlert("Passwords must match",Color.red);
-				password_f.text ="";
-				passwordC_f.text ="";
-				Debug.Log("Passwords must match");
-			}
+		if(password == passwordC){
+			WWW www = new WWW("https://voxland.000webhostapp.com/register.php",form);
+			Debug.Log("Account created");
+			PlayerPrefs.SetString("PlayerName",username_f.text);
+			register.SetTrigger("registerTrigger");
+			StartScreen.SetActive(false);
+			MainMenu.SetActive(true);
 		}
 		else{
-				triggerAlert("All fields must be filled with atleast 8 letters",Color.red);
-				password_f.text ="";
-				passwordC_f.text ="";
-				Debug.Log("All fields must be filled with atleast 8 letters");
-			}
+			triggerAlert("Passwords must match",Color.red);
+			password_f.text ="";
+			passwordC_f.text ="";
+			Debug.Log("Passwords must match");
+		}
+		
 	}
 
 	public void LoginButton(){
 		StartCoroutine(Login());
-	}
-
-	public void RegisterButton(){
-		StartCoroutine(Register());
 	}
 
 	IEnumerator Login(){
